@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="pt-BR"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="pt-BR" /><updated>2025-10-01T22:32:09+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Luis Felipe Monteiro | Desenvolvedor Full Stack</title><subtitle>Portfólio e blog de um desenvolvedor apaixonado por tecnologia, explorando o universo de DevOps, Cloud e desenvolvimento de software.</subtitle><author><name>Luis Felipe Monteiro</name></author><entry><title type="html">Infraestrutura como Código com Terraform</title><link href="http://localhost:4000/devops/cloud/terraform/2025/10/01/infraestrutura-como-codigo-terraform/" rel="alternate" type="text/html" title="Infraestrutura como Código com Terraform" /><published>2025-10-01T00:00:00+01:00</published><updated>2025-10-01T00:00:00+01:00</updated><id>http://localhost:4000/devops/cloud/terraform/2025/10/01/infraestrutura-como-codigo-terraform</id><content type="html" xml:base="http://localhost:4000/devops/cloud/terraform/2025/10/01/infraestrutura-como-codigo-terraform/"><![CDATA[<h2 id="o-que-é-uma-infraestrutura">O que é uma infraestrutura?</h2>
+
+<p>Antes de falarmos de código, o que, afinal, é uma infraestrutura?</p>
+
+<p>Para facilitar, vamos pensar em uma analogia do mundo real: <strong>a construção de um hospital</strong>.</p>
+
+<p>A finalidade do hospital são os médicos, os equipamentos e os pacientes – o que podemos chamar de ‘aplicação’ – a <strong>infraestrutura é toda a base que permite que o hospital funcione</strong>. É a fundação do prédio, a estrutura, a rede elétrica que alimenta os equipamentos, o encanamento que leva água e oxigênio, e o sistema de segurança.</p>
+
+<p>No nosso mundo da tecnologia, o conceito é exatamente o mesmo. Nossos aplicativos, sites e sistemas são como os médicos e pacientes, e eles precisam de uma base para rodar:</p>
+
+<ul>
+  <li><strong>Servidores (Computação)</strong>: A estrutura do prédio, que nos dá o poder de processamento.</li>
+  <li><strong>Rede (Networking)</strong>: A rede elétrica, que permite a comunicação entre todos os componentes e com a internet, incluindo os firewalls que são as portas e trancas.</li>
+  <li><strong>Bancos de Dados e Armazenamento (Storage)</strong>: O encanamento, por onde os dados fluem e são armazenados com segurança.</li>
+</ul>
+
+<p>Por muito tempo, construir essa base digital foi um processo manual, lento e arriscado, muito parecido com assentar tijolo por tijolo em uma obra.</p>
+
+<h2 id="o-cenário-tradicional-e-problemático">O Cenário Tradicional e Problemático</h2>
+
+<h3 id="como-a-infraestrutura-era-gerenciada">Como a infraestrutura era gerenciada?</h3>
+
+<p>Manualmente, clicando em painéis de provedores de nuvem – um processo lento, sujeito a erros humanos e difícil de replicar.</p>
+
+<h3 id="quais-as-dores-desse-modelo">Quais as dores desse modelo?</h3>
+
+<ul>
+  <li><strong>Inconsistência</strong>: O ambiente de desenvolvimento nunca é igual ao de produção.</li>
+  <li><strong>Lentidão</strong>: Criar um novo ambiente do zero leva horas ou dias.</li>
+  <li><strong>Risco</strong>: Uma configuração errada feita manualmente pode derrubar um sistema.</li>
+  <li><strong>Falta de Histórico</strong>: Quem mudou o quê? Quando? E por quê? É difícil saber.</li>
+</ul>
+
+<h2 id="a-solução---infraestrutura-como-código-iac">A Solução - Infraestrutura como Código (IaC)</h2>
+
+<h3 id="o-que-é-iac">O que é IaC?</h3>
+
+<p>É a prática de gerenciar e provisionar sua infraestrutura (servidores, redes, bancos de dados) através de <strong>arquivos de código</strong>, em vez de processos manuais.</p>
+
+<h3 id="a-grande-mudança-trate-sua-infraestrutura-como-se-fosse-software">A grande mudança: Trate sua infraestrutura como se fosse software</h3>
+
+<ul>
+  <li><strong>Versionamento</strong>: Use Git para salvar o histórico de toda a sua infraestrutura.</li>
+  <li><strong>Automação</strong>: Crie, altere e destrua ambientes inteiros com um único comando.</li>
+  <li><strong>Repetibilidade</strong>: Garanta que seu ambiente de produção seja 100% idêntico ao de teste.</li>
+</ul>
+
+<h2 id="terraform">Terraform</h2>
+
+<h3 id="o-que-é-o-terraform">O que é o Terraform?</h3>
+
+<p>É uma das ferramentas de IaC mais populares do mundo, criada pela HashiCorp. É open-source e usa uma linguagem simples e legível (HCL).</p>
+
+<h3 id="por-que-o-terraform-é-tão-poderoso">Por que o Terraform é tão poderoso?</h3>
+
+<ul>
+  <li><strong>Declarativo</strong>: Você descreve o que você quer (ex: “quero um servidor t3.micro”), e o Terraform descobre como fazer.</li>
+  <li><strong>Multi-Cloud</strong>: Funciona com AWS, Google Cloud, Azure e centenas de outros provedores com o mesmo fluxo de trabalho.</li>
+  <li><strong>Planejamento Seguro</strong>: Antes de aplicar qualquer mudança, o comando <code class="language-plaintext highlighter-rouge">terraform plan</code> te mostra exatamente o que será criado, alterado ou destruído. Isso evita surpresas.</li>
+</ul>
+
+<h2 id="demonstração---hello-world-na-aws">Demonstração - “Hello, World!” na AWS</h2>
+
+<h3 id="nosso-objetivo">Nosso Objetivo:</h3>
+
+<ol>
+  <li>Escrever um único arquivo de configuração do Terraform.</li>
+  <li>Executar 3 comandos simples.</li>
+  <li>Criar um servidor web na nuvem da AWS.</li>
+  <li>Acessar o servidor pelo navegador e ver a mensagem “Hello, World!”.</li>
+</ol>
+
+<h3 id="o-ciclo-de-vida-do-terraform">O Ciclo de Vida do Terraform</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>terraform init    <span class="c"># Inicializa o projeto</span>
+terraform plan    <span class="c"># Planeja as ações</span>
+terraform apply   <span class="c"># Aplica o plano</span>
+terraform destroy <span class="c"># Destrói tudo</span>
+</code></pre></div></div>
+
+<h2 id="exemplo-prático">Exemplo Prático</h2>
+
+<p>Aqui está um exemplo de código Terraform para criar uma instância EC2 na AWS:</p>
+
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Configuração do provedor AWS</span>
+<span class="nx">provider</span> <span class="s2">"aws"</span> <span class="p">{</span>
+  <span class="nx">region</span> <span class="o">=</span> <span class="s2">"us-east-1"</span>
+<span class="p">}</span>
+
+<span class="c1"># Criação da instância EC2</span>
+<span class="nx">resource</span> <span class="s2">"aws_instance"</span> <span class="s2">"servidor_web"</span> <span class="p">{</span>
+  <span class="nx">ami</span>           <span class="o">=</span> <span class="s2">"ami-053b0d53c279acc90"</span>
+  <span class="nx">instance_type</span> <span class="o">=</span> <span class="s2">"t3.micro"</span>
+
+  <span class="nx">tags</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"ServidorWeb-Terraform"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="conclusão">Conclusão</h2>
+
+<p>Infraestrutura como Código não é mais uma opção, é uma <strong>necessidade</strong> para equipes ágeis e eficientes.</p>
+
+<p>Ferramentas como o Terraform trazem velocidade, segurança e consistência para o gerenciamento de infraestrutura.</p>
+
+<p>O que vimos hoje é apenas o começo. A partir daqui, é possível gerenciar arquiteturas complexas de forma simples e automatizada.</p>
+
+<hr />
+
+<p><em>Este é o primeiro post de uma série sobre DevOps e Cloud Computing. Fique ligado para mais conteúdos!</em></p>]]></content><author><name>Luis Felipe Monteiro</name></author><category term="DevOps" /><category term="Cloud" /><category term="Terraform" /><summary type="html"><![CDATA[Aprenda o que é Infraestrutura como Código (IaC) e como o Terraform revoluciona a forma de gerenciar infraestrutura na nuvem.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/default-social-image.png" /><media:content medium="image" url="http://localhost:4000/assets/default-social-image.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
